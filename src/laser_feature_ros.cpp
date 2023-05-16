@@ -63,17 +63,19 @@ void LaserFeatureROS::scanValues(const sensor_msgs::LaserScan::ConstPtr &scan_ms
 	startgame();
 }
 
-void LaserFeatureROS::publishMarkerMsg(const std::vector<gline> &m_gline,visualization_msgs::Marker &marker_msg)
+void LaserFeatureROS::publishMarkerMsg(const std::vector<gline> &m_gline,
+		highliner::LineArrayStamped &line_msg,
+		visualization_msgs::Marker &marker_msg)
 {
 	marker_msg.ns = "line_extraction";
 	marker_msg.id = 0;
 	marker_msg.type = visualization_msgs::Marker::LINE_LIST;
 	marker_msg.scale.x = 0.1;
-	marker_msg.color.r = 1.0;
-	marker_msg.color.g = 0.0;
+	marker_msg.color.r = 0.0;
+	marker_msg.color.g = 1.0;
 	marker_msg.color.b = 0.0;
 	marker_msg.color.a = 1.0;
-  
+
 
 	for (std::vector<gline>::const_iterator cit = m_gline.begin(); cit != m_gline.end(); ++cit)
 	{
@@ -88,8 +90,8 @@ void LaserFeatureROS::publishMarkerMsg(const std::vector<gline> &m_gline,visuali
 	    p_end.z = 0;
 	    marker_msg.points.push_back(p_end);
 	}
-	marker_msg.header.frame_id = "laser";
-	marker_msg.header.stamp = ros::Time::now();
+	line_msg.header.frame_id = marker_msg.header.frame_id = frame_id_;
+	line_msg.header.stamp = marker_msg.header.stamp = ros::Time::now();
 }
 
 

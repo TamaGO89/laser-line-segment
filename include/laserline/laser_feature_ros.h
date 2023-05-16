@@ -12,6 +12,7 @@ mobile robot pose from laser
 #include <ros/ros.h>
 #include <sensor_msgs/LaserScan.h>
 #include <visualization_msgs/Marker.h>
+#include <highliner/LineArrayStamped.h>
 #include <geometry_msgs/Point.h>
 #include "laserline/line_feature.h"
 
@@ -29,7 +30,9 @@ class LaserFeatureROS
 	private:
 		//memeber function
 		//发布直线分割消息
-		void publishMarkerMsg(const std::vector<gline> &,visualization_msgs::Marker &marker_msg);
+		void publishMarkerMsg(const std::vector<gline> &,
+				highliner::LineArrayStamped &line_msg,
+				visualization_msgs::Marker &marker_msg);
 		//开始函数，包括读取文件（先验地图等信息）
 		//load params
 		void load_params();

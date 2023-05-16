@@ -8,7 +8,7 @@ find_package(Boost REQUIRED COMPONENTS system thread)
 find_package(catkin REQUIRED
   COMPONENTS
     diagnostic_updater
-    driver_base
+    # driver_base
     dynamic_reconfigure
     rosconsole
     roscpp
@@ -30,7 +30,8 @@ catkin_package(
 
 find_package(PkgConfig REQUIRED)
 
-pkg_check_modules( ncurses REQUIRED ncurses)
+# pkg_check_modules( ncurses REQUIRED ncurses)
+
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
 ## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
@@ -203,6 +204,9 @@ install(DIRECTORY include/${PROJECT_NAME}/
 install(TARGETS laserline
         DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
+install(DIRECTORY launch
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+  FILES_MATCHING PATTERN "*.launch" )
 ## Add gtest based cpp test target and link libraries
 # catkin_add_gtest(${PROJECT_NAME}-test test/laserline.cpp)
 # if(TARGET ${PROJECT_NAME}-test)

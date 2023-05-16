@@ -1,7 +1,7 @@
 <launch>
   <node name="laserline" pkg="laserline" type="laserline">
-    <param name="~frame_id" value="laser" />
-    <param name="~scan_topic" value="scan" />
+    <param name="~frame_id" value="scan" />
+    <param name="~scan_topic" value="joint/scan" />
     <param name="~frequency" value="40.0" />
     <param name="~show_lines" value="true" />
     <param name="~least_thresh" value="0.03" />
